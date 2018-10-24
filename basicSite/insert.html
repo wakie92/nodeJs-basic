@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>새글 등록</title>
+    <script>
+        function goList(){
+            location href = '/';
+        }
+    </script>
+</head>
+<body>
+   <div align ="center">
+       <hr>
+       <h2>글등록 페이지</h2>
+       <hr>
+       <br>
+         <form method = 'post' action = '/insert'>
+            <table border = '1' width = '80%'>
+                <tr>
+                    <th width ='25%'>제목</th>
+                        <td>
+                            <input type = 'text' name = "title" size = "50">
+                        </td>
+                </tr>
+                 <tr>
+                    <th width ='25%'>글쓴이</th>
+                        <td>
+                            <input type = 'text' name = "writer" size = "50">
+                        </td>
+                </tr>
+                 <tr>
+                    <th width ='25%'>내용</th>
+                        <td>
+                            <textarea name = "content" cols = '50' rows = '5'></textarea>
+                        </td>
+                </tr>
+             </table>
+             <br>
+             <input type = 'submit' value ='등록'>
+             <input type = 'button' value = "목록" onclick  ="goList()">
+         </form>     
+   </div>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail page</title>
+    <script>
+        function goList(){
+            location.href = '/';
+        }
+    </script>
+</head>
+<body>
+    <div align = 'center'>
+        <hr>
+        <h2>게시판 상세 페이지</h2>
+        <hr>
+        <br>
+        
+        <table border ='1' width = '80%'>
+            <tr>
+                <th width ="25%">번호</th>
+                <td><%= board.no %></td>
+            </tr>
+             <tr>
+                <th width ="25%">제목</th>
+                <td><%= board.title %></td>
+            </tr>
+             <tr>
+                <th width ="25%">글쓴이</th>
+                <td><%= board.writer %></td>
+            </tr>
+             <tr>
+                <th width ="25%">내용</th>
+                <td><%= board.content %></td>
+            </tr>
+             <tr>
+                <th width ="25%">조회수</th>
+                <td><%= board.view_cnt %></td>
+            </tr>
+            <tr>
+                <th width ="25%">등록일</th>
+                <td><%= board.reg_date %></td>
+            </tr>
+            
+        </table>
+           <br>
+           <input type = 'button' value ='목록' onclick= goList()>
+
+            
+        
+    </div>
+</body>
+</html>

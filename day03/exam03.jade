@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title pug page
+        style.
+            h2{
+                background-color :yellow
+            }
+    body
+        h2 안녕하세요
+        - for(var i =0; i<10;i++){
+        h2 내이름은 홍길동입니다.
+        -}
+        h2 #{id}
+        h2= id

@@ -1,0 +1,182 @@
+doctype html
+html
+    head
+        title 회원가입
+        style.
+            #msgView{
+                margin-left : 10px;
+            }
+            #tel{
+                margin-left : 10px;
+            }
+        script(src = 'http://code.jquery.com/jquery-3.3.1.js')
+        script(src="http://dmaps.daum.net/map_js_init/postcode.v2.js")
+        script.
+            $(document).ready(function(){
+                $('#registBtn').click(function(){
+                    alert('가입이 완료되었습니다.')
+                   
+                })
+                $('#clearBtn').click(function(){
+                    alert('s');
+                    location.href = '/member/register';
+                })
+                
+                 $('#id').keyup(function(){
+                    var id = $(this).val();
+                    console.log(id);
+                  if(id.length < 4){
+                     $('#msgView').text('');            
+                  }else if(id.length >= 4){
+                        $.ajax({
+                            url : '/member/checkId/' + id,
+                            type : 'get',
+                            success : function(data){
+                               $('#msgView').text(data.result)
+                                }                         
+                            });
+                    $('#msgView').text('사용중인 아이디입니다.');
+                    }
+                 })
+                  
+            })
+            function postCode(){
+                new daum.Postcode({
+                    oncomplete : function(data){
+                        var fullRoadAddr = data.roadAddress;
+                        var extraRoadAddr = '';
+                        
+                        if(data.bname != ''&&/[동|로|가]$/g.test(data.bname)){
+                            extraRoadAddr += data.bname;
+                        }
+                        
+                        if(data.bulidingName !== ''&& data.apartment =='Y'){
+                             extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        if(extraRoadAddr !== ''){
+                            extraRoadAddr = ' (' + extraRoadAddr + ')';
+                        }
+                        if(fullRoadAddr !== ''){
+                            fullRoadAddr += extraRoadAddr;
+                        }
+                        document.getElementById('post').value = data.zonecode;
+                        document.getElementById('basic_addr').value = fullRoadAddr;
+                        document.getElementById('detail_addr').value = data.jibunAddress;
+                    
+                        if(data.autoRoadAddress) {
+                        //예상되는 도로명 주소에 조합형 주소를 추가한다.
+                            var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                            document.getElementById('guide').innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+
+                        } else if(data.autoJibunAddress) {
+                            var expJibunAddr = data.autoJibunAddress;
+                            document.getElementById('guide').innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+
+                        } else {
+                            document.getElementById('guide').innerHTML = '';
+                        }
+                    }
+                }).open();
+            }
+            
+            function checkFor(){
+                var f = document.wForm;
+                
+                if(f.id.value ==''){
+                    alert('아이디를 입력하세요');
+                    f.id.focus();
+                    return false;
+                }
+                
+                if(f.name.value == ''){
+                    alert('이름을 입력하세요');
+                    f.name.focus();
+                    return false;
+                }
+                
+                if(f.password.value == ''){
+                    alert('패스워드를 입력하세요');
+                    f.password.focus();
+                    return false;
+                }
+                
+                if(f.email.value == ''){
+                    alert('이메일을 입력하세요');
+                    f.name.focus();
+                    return false;
+                }
+                
+                if(f.email.value != '@'){
+                    alert('도메인을 다시 입력하세요');
+                    f.name.focus();
+                    return false;
+                }
+                
+              
+                if(f.tel2.value == ''){
+                    alert('이름을 입력하세요');
+                    f.name.focus();
+                    return false;
+                }else if (f.tel2.value.length != 4){
+                    alert('핸드폰번호를 확인해주세요')
+                }
+                
+                if(f.tel3.value == ''){
+                    alert('이름을 입력하세요');
+                    f.name.focus();
+                    return false;
+                }else if (f.tel2.value.length != 4){
+                    alert('핸드폰번호를 확인해주세요')
+                }
+            }
+    body
+        div(align = 'center')
+            br
+            hr
+            h2 회원가입 페이지
+            hr
+            br
+            form(method = 'post' name = 'wForm')
+                table(width ='80%', border = '1')
+                    tr
+                        th ID
+                        td 
+                            input(type = 'text', name = 'id')#id
+                            spantag#msgView
+                    tr
+                        th 이름
+                        td 
+                            input(type ='text', name = 'name')
+                    tr
+                        th PASSWORD
+                        td
+                            input(type ='password', name = 'password')
+                            tr
+                        th PASSWORD CHECK
+                        td
+                            input(type ='password', name = 'password_check')
+                            
+                    tr
+                        th 이메일
+                        td 
+                            input(type ='email', name = 'email')
+                            
+                            
+                    tr
+                        th 핸드폰번호
+                        td 
+                            input(type = 'text', name = 'tel1', value = '010', size = '3px')
+                            input(type ='text', name = 'tel2' size = '3px')#tel
+                            input(type ='text', name = 'tel3' size = '3px')#tel
+                    tr
+                        th 주소
+                        td 
+                            input(type ='text', name = 'post' placeholder = '우변번호')#post
+                            input(type = 'button' onclick ='postCode()' value = "우편번호 찾기")
+                            br
+                            input(type ='text' name = 'basic_addr' placeholder = '도로명주소')#basic_addr
+                            input(type = 'text' name = 'detail_addr' placeholder ='지번주소')#detail_add
+
+                br
+                input(type='submit', value ='회원가입')#registBtn
+                input(type='button', value = '취소')#clearBtn

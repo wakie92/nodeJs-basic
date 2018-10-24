@@ -1,0 +1,51 @@
+doctype html
+html
+    head
+        title 게시판 목록
+        script(src = "http://code.jquery.com/jquery-3.3.1.min.js")
+        script.
+            $(document).ready(function(){
+                $('#writeBtn').click(function(){
+                    location.href = '/board/post';
+                })
+                 
+                 $('#allDelBtn').click(function(){
+                    if(confirm('게시글을 삭제하시겠습니까?')){
+                        $.ajax({
+                            url : 'board',
+                            type : 'delete',
+                            success : function(){
+                                location.href = '/board'
+                            },
+                            error : function(){
+                                alert('error');
+                            }
+                        })
+                    }
+                 })
+               
+            });
+          
+    body
+        div(align = 'center')
+            hr
+            h2 게시판 목록 페이지
+            hr
+            br
+            table(border='1', width='80%')
+                tr
+                    th(width = '10%') 번호
+                    th 제목
+                    th(width = '23%') 글쓴이
+                    th(width = '25%') 등록일
+                each item in boardList
+                    tr 
+                        td #{ item.no }
+                        td 
+                            a(href = '/board/#{ item.no }') #{ item.title }
+                        td #{ item.writer}
+                        td #{ item.reg_date}
+            br
+            button#writeBtn 새글등록
+            &nbsp;&nbsp;&nbsp;
+            button#allDelBtn 전체삭제

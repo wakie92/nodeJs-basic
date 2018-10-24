@@ -1,0 +1,58 @@
+doctype html
+html
+    head
+        title 회원가입
+        style.
+            #msgView{
+                margin-left : 10px;
+            }
+        script(src = 'http://code.jquery.com/jquery-3.3.1.js')
+        script.
+            $(document).ready(function(){
+                $('.clearBtn').click(function(){
+                    location.href = '/';
+                })
+                
+                $('#id').keyup(function(){
+                    var id = $(this).val();
+                    if(id == null || id = '')
+                        $('#msgView').text('');
+                    else if(id.length >= 6){
+                        $.ajax({
+                            url : '/member/checkId/' + id,
+                            type : 'get',
+                            success : function(data){
+                               $('#msgView').text(data.result)
+                            }                    
+                        }
+                        
+                    });
+                    $('#msgView').text('사용중인 아이디입니다.');
+                })
+            })
+    body
+        div(align = 'center')
+            br
+            hr
+            h2 회원가입 페이지
+            hr
+            br
+            form(method = 'post')
+            table(width ='80%', border = '1')
+                tr
+                    th ID
+                    td 
+                        input(type = 'text', name = 'id')#id
+                        spantag#msgView
+                tr
+                    th PASSWORD
+                    td
+                        input(type ='password', name = 'password')
+                        tr
+                    th PASSWORD CHECK
+                    td
+                        input(type ='password', name = 'password_check')
+                        
+            br
+            input(type='submit', value ='회원가입')
+            input(type='button', value = '취소')

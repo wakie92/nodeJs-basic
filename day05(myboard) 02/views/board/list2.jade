@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title 게시판 목록
+    body
+        div(align = 'center')
+            hr
+            h2 게시판 목록 페이지
+            hr
+            br
+            table(border='1', width='80%')
+                tr
+                    th(width = '10%') 번호
+                    th 제목
+                    th(width = '23%') 글쓴이
+                    th(width = '25%') 등록일
+                - for(var i = 0 ; i<boardList.length; i++){
+                    tr
+                        td #{boardList[i].no}
+                        td #{boardList[i].title}
+                        td #{boardList[i].writer}
+                        td #{boardList[i].reg_date}
+                -}

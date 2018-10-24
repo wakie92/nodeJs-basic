@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <script>
+        function goList(){
+            location.href = '/';
+        }
+    </script>
+</head>
+<body>
+    <div align = 'center'>
+        <hr>
+        <h2>로그인 페이지</h2>
+        <hr>
+        <br>
+        <form action = "/login" method = 'post'>
+            <table border="1" width="40%">
+                <tr>
+                    <th width = 25%> ID </th>
+                    <td><input type = 'text' name = 'id' ></td>
+                </tr>
+                <tr>
+                    <th>PASSWORD</th>
+                    <td><input type = 'password' name= 'password' </td>
+                </tr>                
+            </table>
+            <br>
+            <input  type = 'submit' value = "LOGIN">
+            <input type = 'button' value = "목록" onclick = "goList()">
+            
+        </form>       
+    </div>
+</body>
+</html>

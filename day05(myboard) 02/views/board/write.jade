@@ -1,0 +1,80 @@
+doctype html
+html
+    head
+        title 새글 등록
+        script(src = "http://code.jquery.com/jquery-3.3.1.min.js")
+        script.
+            function goList(){
+                location.href ='/board';
+            }
+            function checkForm(){
+                var f = document.wForm;
+                if(f.title.value ==''){
+                    f.title.focus();
+                    return false;
+                }
+                
+                if(f.writer.value ==''){
+                    f.writer.focus();
+                    return false;
+                }
+                
+                if(f.content.value ==''){
+                    f.content.focus();
+                    return false;
+                }
+                //확장자 체크
+                //if(checkExt)
+                //console.log(f.file01.value);
+                if(checkExt(f.file01)){
+                    return false;
+                }
+                return true;
+            }
+            
+            function checkExt(obj){
+                var forbidName = ['exe', 'js', 'jade','sql'];
+                var fileName = obj.value;
+                var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+                
+                
+                for(var i = 0; i < forbidName.length; i++){
+                    if(ext === forbidName[i]){
+                        alert(ext + '확장자는 파일 업로드 정책에 위배됩니다.');
+                        return true;
+                    }
+                    
+                }
+                return false;
+            }
+            
+    body
+        div(align = 'center')
+            hr
+            h2 글등록 페이지
+            hr
+            br
+            form(name = "wForm",method = 'post' onsubmit = 'return checkForm()',
+                enctype = 'multipart/form-data')
+                input(type='hidden', name = 'writer' value = '#{user.id}')
+                table(border = '1', width = '80%')
+                    tr
+                        th(width = '25%') 제목
+                        td
+                            input(type = 'text' , name = 'title')
+                    tr
+                        th(width = '25%') 글쓴이
+                        td #{user.id}
+                           
+                    tr
+                        th(width = '25%') 내용
+                        td
+                            textarea(name = "content" cols = '50' rows = '5')
+                    tr
+                        th 첨부파일
+                        td
+                            input(type = 'file', name = 'file01')
+                br
+                input(type = 'submit', value = '등록')
+                input(type = 'button', value = '목록', onclick = 'goList()' )
+                            

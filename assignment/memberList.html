@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원명단</title>
+    <script>
+        function goRegister(){
+            location.href = '/register'
+        }
+    </script>
+</head>
+<body>
+   <div align = 'center'>
+       <hr>
+       <h2>회원가입 명단</h2>
+       <hr>
+       <br>
+      
+       <table border = '1' width = '80%'>
+           <tr>
+               <th width ='7%'> ID </th>
+               
+               <th>이름</th>
+               <th>이메일</th>
+           </tr>
+           <%
+               for(var i = 0 ; i<memberList.length; i++){
+           %>
+               
+               <tr>        
+                   <td><a href = '/detailInfo?id=<%= memberList[i].id%>'>
+                   <%= memberList[i].id%>
+                   </a></td>
+                   <td><%= memberList[i].name%></td>
+                   <td><%= memberList[i].email_id%><%= memberList[i].email_domain%></td>
+                   
+               </tr>
+           <%
+               }
+           %>
+            <button onclick = 'goRegister()' >회원가입</button>
+       </table>
+      
+   </div>
+    
+</body>
+</html>

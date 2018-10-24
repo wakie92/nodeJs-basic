@@ -1,0 +1,23 @@
+script.
+    function addFavorit(){
+        try{
+            window.external.AddFavorite('http://localhost:10001', '나의 첫웹')
+        }
+        catch{
+
+        }
+    }
+
+table(border = '1', stayle = 'width:100%')
+    tr
+        td(rowspan = '2')
+            img(src = 'https://pbs.twimg.com/profile_images/770139154898382848/ndFg-IDH_400x400.jpg' style = 'width: 60px; height : 50px;')
+        td(align = 'right')
+            if user
+                | 로그인중....
+                | &nbsp;
+                a(href = 'javascript:addFavorite()') 즐겨찾기
+    tr  
+        td
+            nav 
+                | 회원관리 ||

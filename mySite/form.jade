@@ -1,0 +1,76 @@
+doctype html
+html
+    head
+        title 게시판 #{data.title}페이지
+        script(src='http://code.jquery.com/jquery-3.3.1.js')
+        script.
+            function checkForm() {
+                var f = document.wForm;
+                
+                if(f.title.value == '') {
+                    alert('제목을 입력하세요');
+                    f.title.focus();
+                    return false;
+                }
+                
+                if(f.writer.value =='') {
+                    alert('글쓴이를 입력하세요');
+                    f.writer.focus();
+                    return false;
+                }
+                
+                if(f.content.value == '') {
+                    alert('내용을 입력하세요');
+                    f.content.focus();
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            $(document).ready(function() {
+                $('#listBtn').click(function() {
+                    location.href = '/board';
+                });
+            });
+    body
+        div(align="center")
+            br
+            hr
+            h2 게시판 #{data.title}
+            hr
+            br
+            form(name='wForm', method="post", action="#{data.url}", onsubmit='return checkForm()')
+                table(border='1', width='80%')
+                    tr
+                        th(width="25%") 제목
+                        td
+                            input(type='text',name='title',value= board?'#{board.title}': '')
+                    tr
+                        th 글쓴이
+                        td
+                            if(board)
+                                input(type='text',name='writer',value='#{board.writer}')
+                            else
+                                input(type='text',name='writer')
+                    tr
+                        th 내용
+                        td
+                            if(board)
+                                textarea(rows='5', cols='50', name='content') #{board.content}
+                            else
+                                textarea(rows='5', cols='50', name='content')
+                br
+                input(type='submit', value='수정')
+                input(type='button', value='목록')#listBtn
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                

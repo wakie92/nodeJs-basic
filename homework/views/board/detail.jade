@@ -1,0 +1,151 @@
+doctype html
+html
+    head
+        title 게시판상세
+        script(src = "http://code.jquery.com/jquery-3.3.1.min.js")
+        style.
+            div{
+                margin: auto;
+            }
+            #reDiv{
+                width : 60%;
+            }
+            li{
+                text-align : left;  
+            }
+            span {
+                font-size : 8pt;
+                font-weight : bold;
+            }
+            ul{
+                list-style : none;
+            }
+          
+        script.
+            function checkForm(){ 
+                    var f = document.wForm;
+                    if(f.writer.value ==''){
+                        f.writer.focus();
+                        return false;
+                    }
+                    if(f.content.value ==''){
+                        f.content.focus();
+                        return false;
+                    }
+                    return true;
+                } 
+            $(document).ready(function(){
+
+                $('#upBtn').click(function(){
+                    alert('s')
+                    let reple = $('#reText').val();
+                    let writer = $('#writer').val();
+                    let boardNo = #{board.no};
+                    console.log(reple)
+                    console.log(writer);
+                    if(reple != ''){
+                        $.ajax({
+                            url : '/board/#{board.no}',
+                            type : 'post',
+                            data : {reple,writer,boardNo},
+                            success : function(data){
+                               $('#comment_1').text(data.reple);
+                            },
+                            error : function(){
+                               console.log('실패')
+                            }
+                        })
+                    }else{
+                        return false;
+                    }
+                    $("#reText").val('');
+                })
+
+                $('#listBtn').click(function(){
+                    location.href = '/board'
+                })
+
+                $('#delBtn').click(function(){
+                    if(confirm('게시글을 삭제하시겠습니까?')){
+                        $.ajax({
+                            url: "/board/#{board.no}",
+                            type : 'delete',
+                            success : function(result){
+                                alert("삭제성공");
+                                location.href = '/board';
+                            },
+                            error : function(){
+                                alert('error');
+                            }
+                        })
+                    }
+                })
+
+                $('#updateBtn').click(function(){
+                    alert('수정하시겠습니까?');
+                    location.href = '/board/post/#{board.no}'
+                })
+
+            })
+    body
+        div(align ='center')
+            br
+            hr
+            h2 게시판 상세 페이지
+            hr
+            br
+            table(border='1', width ='80%')
+                tr
+                    th(width = '25%') 번호
+                    td #{board.no}
+                tr
+                    th 제목
+                    td #{board.title}
+                tr 
+                    th 내용
+                    td #{board.content}
+                tr
+                    th 조회수
+                    td #{board.view_cnt}
+                tr 
+                    th 등록일
+                    td  #{board.reg_date}
+                
+            br
+            div#reDiv
+                div
+                ul.comment
+                    each item in board.comments
+                        li.commentLi 
+                            span #{item.writer}  &nbsp;&nbsp;&nbsp;                    
+                            span #{item.reg_date}
+                            br
+                            div#comment_1 #{item.comment}
+                            hr
+                            
+                hr
+                br
+            form(method = 'post', name = 'reple' onsubmit = 'return checkForm()')   
+                div.cs
+                    table
+                        tr
+                            th 댓글쓰기
+                                td 
+                                    textarea(cols = '60%' rows = '5' placeholder = "댓글을 입력해주세요." name = 'comment' )#reText
+                                    &nbsp;  &nbsp; &nbsp;
+                        tr
+                            th 글쓴이
+                            td
+                                input(type = 'text' name = 'writer' placeholder = "글쓴이")#writer
+                            td  
+                    
+
+            hr      
+            input(type = 'submit', value = '댓글등록')#upBtn
+            br
+            button#updateBtn 수정
+            &nbsp;&nbsp;&nbsp;
+            button#delBtn 삭제
+           
+            &nbsp;&nbsp;&nbsp;
+            button#listBtn 목록

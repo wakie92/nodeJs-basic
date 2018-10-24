@@ -1,0 +1,34 @@
+doctype html
+html
+    head
+        title 로그인
+        script.
+            window.onload = function(){
+                if('#{idSave}'){
+                    document.getElementById('id').value='#{idSave}';
+                    document.querySelector('#idSave').checked = true;
+                }
+            }
+    body
+        div(align = 'center')
+            br
+            hr
+            h2 로그인페이지
+            hr
+            br
+            
+            form(method = "post")
+                table(border = '1', width ='40%')
+                    tr
+                        th ID
+                        td 
+                            if idSave
+                            input(type ='text' name = 'id')#id
+                            input(type = 'checkbox', name = 'idSave')#idSave
+                            | 아이디저장
+                    tr
+                        th PASSWORD
+                        td
+                            input(type = 'password' name = 'password')
+                br
+                input(type ='submit' value = '로그인') 

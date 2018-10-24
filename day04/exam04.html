@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h2>파일첨부 테스트</h2>
+    <br>
+    <form method = "post" action'/upload'
+           enctype='multipart/form-data'><!--encytype을 설정하지않으면 파일이 전송되는것이아니라 파일 정보가 넘어간다. -->
+        id : <input type ='text' name = 'id'><br>
+        사진첨부 : <input type ='file' name = 'image'><br>
+       <input type = "submit" value = "전송">
+    </form>
+    
+</body>
+</html>

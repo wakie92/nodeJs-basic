@@ -1,0 +1,7 @@
+홈페이지 구성
+                서버 설정 구동
+js        ->      기능별(path기준)              
+jade(pug)  ->     기능별 폴더
+css
+image             폴더
+mySQL             db설정ㅋ

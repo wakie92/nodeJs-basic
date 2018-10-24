@@ -1,0 +1,42 @@
+doctype html
+html
+    head
+        title 게시판목록
+        script(src = 'http://code.jquery.com/jquery-3.3.1.min.js')
+        script.
+            $(document).ready(()=>{
+                $('#writeBtn').click(()=>{
+                    location.href = '/board/post';
+                })
+            })
+
+            function goDetail(boardNo){
+                location.href = '/board/' + boardNo;
+                console.log('no' + boardNo)
+            }
+    body
+        div(align='center')
+            hr
+            h2 게시판 목록 페이지
+            hr
+            br
+            table(border ='1', width = '80%')
+                tr
+                    th(width  ='10%') 번호
+                    th 제목
+                    th(width = '10%') 작성자
+                    th(width = '15%') 등록일
+                    th(width = '7%') 조회수
+                each item in boards
+                    tr 
+                        td #{item.no}
+                        td 
+                            a(href = "javascript:goDetail(#{ item.no })") #{ item.title }
+                        td #{item.writer}
+                        td #{item.reg_date}
+                        td #{item.view_cnt}
+            br
+            hr
+            button#writeBtn 새글등록
+            hr
+            button#allDelBtn 전체삭제

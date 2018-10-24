@@ -1,0 +1,52 @@
+doctype html
+html
+    head
+        title 새글 등록
+        script(src = "http://code.jquery.com/jquery-3.3.1.min.js")
+        script.
+            function goList(){
+                location.href ='/board';
+            }
+            function checkForm(){
+                var f = document.wForm;
+                if(f.title.value ==''){
+                    f.title.focus();
+                    return false;
+                }
+                
+                if(f.writer.value ==''){
+                    f.writer.focus();
+                    return false;
+                }
+                
+                if(f.content.value ==''){
+                    f.content.focus();
+                    return false;
+                }
+                
+                return true;
+            }
+    body
+        div(align = 'center')
+            hr
+            h2 글등록 페이지
+            hr
+            br
+            form(name = "wForm",method = 'post' onsubmit = 'return checkForm()')
+                table(border = '1', width = '80%')
+                    tr
+                        th(width = '25%') 제목
+                        td
+                            input(type = 'text' , name = 'title')
+                    tr
+                        th(width = '25%') 글쓴이
+                        td
+                            input(type = 'text', name  = 'writer')
+                    tr
+                        th(width = '25%') 내용
+                        td
+                            textarea(name = "content" cols = '50' rows = '5')
+                br
+                input(type = 'submit', value = '등록')
+                input(type = 'button', value = '목록', onclick = 'goList()' )
+                            

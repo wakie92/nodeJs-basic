@@ -1,0 +1,1 @@
+server.get('/', function(req,res))

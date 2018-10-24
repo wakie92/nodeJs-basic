@@ -1,0 +1,21 @@
+script.
+    function addFavorite(){
+        try{
+            window.external.AddFavorite('http://localhost:10001',"나의 첫웹")
+        }
+        catch
+    }
+
+table(border='1', style = 'width:100%')
+    tr
+        td(rowspan='2')
+            img(src = 'logo.jpg' style = 'width: 60px; height : 50px;')
+        td(align ='right') 즐겨찾기
+    tr
+        td
+            nav 회원관리 || 
+                a(href = '/board') 게시판 ||
+                a(href = '/member/register') 회원가입 ||
+                a(href = '/login') 로그인 ||
+                | 마이페이지 || 
+                a(href = '/logout') 로그아웃

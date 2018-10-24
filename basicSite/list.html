@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List Page</title>
+    <script>
+        function insertBtn(){
+            location.href = '/insert';//insert로 넘어가기
+        }
+    </script>
+</head>
+<body>
+  <div align ='center'>
+   <hr>
+   <h2>전체게시물 목록페이지</h2>
+    <hr>
+    <br>
+  
+    <table border='1' width = '80%'>
+        <tr>
+            <th width = '7%'>번호</th>        
+            <th>제목</th>
+            <th width = '20%'>글쓴이</th>
+            <th width = '23%'>등록일</th>
+        </tr>
+        <%
+            for(var i =0 ; i < boardList.length; i++){
+        %>    
+                    
+           <tr>
+                <td><%= boardList[i].no%></td>     
+                <td><a href = '/detail?no=<%= boardList[i].no%>'>
+                    <%= boardList[i].title%>
+                </a></td>     
+                <td><%= boardList[i].writer%></td>     
+                <td><%= boardList[i].reg_date%></td>     
+           </tr>
+        <% 
+            }
+        %>
+        
+        <!--
+           <%
+            boardList.forEach(function(board){
+            
+        %>
+            <tr>
+                <td><%=board.no%></td>
+                <td><%=board.title%></td>
+                <td><%=board.writer%></td>
+                <td><%=board.reg_date%></td>
+            </tr>
+        <%
+            })
+        
+        %>
+        
+        <%
+            for(var board of boardList){
+            
+        %>
+            <tr>
+                <td><%=board.no%></td>
+                <td><%=board.title%></td>
+                <td><%=board.writer%></td>
+                <td><%=board.reg_date%></td>
+            </tr>
+        <%
+            }
+        
+        %>
+        -->
+    </table>
+    <button onclick ="insertBtn()">새글 등록</button>
+    </div>
+    
+</body>
+</html>

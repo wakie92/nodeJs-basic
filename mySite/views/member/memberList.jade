@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        title 회원명단
+        script(src = "http://code.jquery.com/jquery-3.3.1.min.js")
+        script.
+            $(document).ready(function(){
+                $('#registerBtn').click(function(){
+                    location.href = '/member/register'
+                })
+            })
+    body
+        div(align = 'center')
+            hr
+            h2 회원가입 명단
+            hr
+            br
+            table(border = '1', width = '80%')
+                tr
+                    th(width='7%') ID
+                    th 이름
+                    th 이메일
+                each member in memberList
+                    tr
+                        td #{member.id}
+                        td #{member.name}
+                        td #{member.email_id}#{member.email_domain}
+            br
+            button#registerBtn 회원가입

@@ -1,0 +1,8 @@
+::1 - - [Fri, 20 Jul 2018 05:13:22 GMT] "GET /ajax HTTP/1.1" 200 2605 "http://localhost:4200/board" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+::1 - - [Fri, 20 Jul 2018 05:13:22 GMT] "GET /ajax/undefined HTTP/1.1" 200 - "http://localhost:4200/board" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+::1 - - [Fri, 20 Jul 2018 05:21:03 GMT] "GET /ajax HTTP/1.1" 304 - "http://localhost:4200/board" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+::1 - - [Fri, 20 Jul 2018 05:21:03 GMT] "GET /ajax/undefined HTTP/1.1" 200 - "http://localhost:4200/board" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+::1 - - [Fri, 20 Jul 2018 05:21:12 GMT] "OPTIONS /ajax HTTP/1.1" 200 13 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+::1 - - [Fri, 20 Jul 2018 05:21:12 GMT] "POST /ajax HTTP/1.1" 200 2704 "http://localhost:4200/board" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+::1 - - [Fri, 20 Jul 2018 05:21:28 GMT] "GET /ajax HTTP/1.1" 200 2704 "http://localhost:4200/board" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
+::1 - - [Fri, 20 Jul 2018 05:21:28 GMT] "GET /ajax/undefined HTTP/1.1" 200 - "http://localhost:4200/board" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"

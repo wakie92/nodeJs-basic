@@ -1,0 +1,32 @@
+@charset 'utf-8'
+    
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: verdana, sans-serif;
+    font-size: 13px;
+}    
+
+header {
+    margin: 1%;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 60px;
+    background-color: orange;
+}
+
+section {
+    top: 60px;
+    margin-left: 17%;
+    margin-right: 17%;
+    background-color: bisque;
+    min-height: 400px;
+}
+
+footer {
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 20px;
+    background-color: #ccc;
+}
